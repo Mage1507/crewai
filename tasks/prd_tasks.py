@@ -4,17 +4,16 @@ from crewai import Task
 
 class PRDTask:
     # Task for Product Owner for the contribution of Product Requirement Document
-    def product_owner_task(self, agent):
+    def product_owner_task(self, agent, requirement):
         return Task(
             # based on the requirement create a task for the product owner
             description=dedent(
                 f"""\
-                Create a Product Requirement Document (PRD) based on the following requirement given as the input
+                Create a Product Requirement Document (PRD) based on the following requirement {requirement}
                 """
             ),
             agent=agent,
             expected_output="Product Requirement Document (PRD)",
-            human_input=True,
         )
 
     # Task for Lead Business Analyst for the contribution of Product Requirement Document
@@ -42,6 +41,6 @@ class PRDTask:
             ),
             agent=agent,
             context=[task],
-            expected_output="Approved Product Requirement Document (PRD)",
-            output_file="../document/final_prd.txt",
+            expected_output="Approved Content of PRD",
+            output_file="",
         )
